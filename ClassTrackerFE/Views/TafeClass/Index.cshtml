@@ -1,0 +1,65 @@
+﻿@model IEnumerable<ClassTrackerFE.Models.TafeClass>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.TafeClassId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TafeClassName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TafeClassLocation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TafeClassStartDT)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DurationMinutes)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TeacherId)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TafeClassId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TafeClassName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TafeClassLocation)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TafeClassStartDT)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DurationMinutes)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TeacherId)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.TafeClassId }) |
+                @Html.ActionLink("Details", "Details", new { id=item.TafeClassId }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.TafeClassId })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

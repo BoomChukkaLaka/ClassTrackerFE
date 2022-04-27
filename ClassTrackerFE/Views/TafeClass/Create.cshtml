@@ -1,0 +1,65 @@
+﻿@model ClassTrackerFE.Models.DTO.TafeClassCreate
+
+@{
+    ViewData["Title"] = "Create";
+    
+    // Using ViewBag
+    List<SelectListItem> teacherSelect = ViewBag.TeacherSelect;
+
+    // Two ways to unpack if using ViewData
+    //List<SelectListItem> teacherSelect2 = ViewData["TeacherSelect"] as List<SelectListItem>;
+    //List<SelectListItem> teacherSelect3 = (List<SelectListItem>)ViewData["TeacherSelect"];
+}
+
+<h1>Create</h1>
+
+<h4>TafeClassCreate</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="TafeClassName" class="control-label"></label>
+                <input asp-for="TafeClassName" class="form-control" />
+                <span asp-validation-for="TafeClassName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TafeClassLocation" class="control-label"></label>
+                <input asp-for="TafeClassLocation" class="form-control" />
+                <span asp-validation-for="TafeClassLocation" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TafeClassStartDT" class="control-label"></label>
+                <input asp-for="TafeClassStartDT" class="form-control" />
+                <span asp-validation-for="TafeClassStartDT" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DurationMinutes" class="control-label"></label>
+                <input asp-for="DurationMinutes" class="form-control" />
+                <span asp-validation-for="DurationMinutes" class="text-danger"></span>
+            </div>
+            @*<div class="form-group">
+                <label asp-for="TeacherId" class="control-label"></label>
+                <input asp-for="TeacherId" class="form-control" />
+                <span asp-validation-for="TeacherId" class="text-danger"></span>
+            </div>*@
+            <div class="form-group">
+                <label asp-for="TeacherId" class="control-label"></label>
+                <select asp-for="TeacherId" asp-items="@teacherSelect" class="form-control"></select>
+                <span asp-validation-for="TeacherId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

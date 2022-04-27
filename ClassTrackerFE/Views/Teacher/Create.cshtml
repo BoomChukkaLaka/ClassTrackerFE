@@ -1,0 +1,69 @@
+﻿@model ClassTrackerFE.Models.DTO.TeacherCreate
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>TeacherCreate</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="TeacherName" class="control-label"></label>
+                <input asp-for="TeacherName" class="form-control" />
+                <span asp-validation-for="TeacherName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TeacherEmail" class="control-label"></label>
+                <input asp-for="TeacherEmail" placeholder="sample@provider.com" class="form-control" />
+                <span asp-validation-for="TeacherEmail" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TeacherPhone" class="control-label"></label>
+                <input asp-for="TeacherPhone" class="form-control" />
+                <span asp-validation-for="TeacherPhone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<h2>Upload Teacher Profile Picture</h2>
+
+<div class="row">
+    @using (Html.BeginForm("UploadFile", "Teacher", FormMethod.Post, new { @class = "dropzone", id = "dropzone-form" }))
+    {
+        <div class="fallback">
+            <input name="file" type="file" />
+        </div>
+    }
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+<script src="~/lib/dropzone/min/dropzone.min.js"></script>
+
+<!-- Javascript and JQuery -->
+<script type="text/javascript">
+    Dropzone.options.dropzoneForm = {
+        paramName: "file",
+        maxFiles: 1,
+        acceptedFiles: "image/*",
+        success: function (file, response) {
+            $("#TeacherPhone").val(file.upload.filename);
+            file.previewElement.classList.Add("dz-success");
+        }
+    }
+</script>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
